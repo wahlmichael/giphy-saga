@@ -3,6 +3,7 @@ const router = express.Router();
 const axios = require('axios');
 
 router.get('/:search', (req, res) => {
+    console.log('in GET /search');
     axios({
         method: 'GET',
         params: {
@@ -14,6 +15,9 @@ router.get('/:search', (req, res) => {
         url: 'api.giphy.com/v1/gifs/search'
     }) .then((response) => {
         res.send(response.data.data)
+    }) .catch((error) => {
+        console.log('error in get /search', error);
+        res.sendStatus(500)
     })
 })
 
