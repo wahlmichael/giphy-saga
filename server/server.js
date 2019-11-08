@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -17,7 +18,7 @@ app.use(express.static('build'));
 /* Routes */
 app.use('/api/favorite', favoriteRouter);
 app.use('/api/category', categoryRouter);
-app.use('./api/search', searchRouter);
+app.use('/api/search', searchRouter);
 
 // App Set //
 const PORT = process.env.PORT || 5000;

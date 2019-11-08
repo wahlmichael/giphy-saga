@@ -14,7 +14,7 @@ class Search extends Component {
   }
 
   submitSearch = () => {
-    // this.props.dispatch({type: "SEARCH_GIPHY", payload: this.state.search})
+    this.props.dispatch({type: "SEARCH_GIPHY", payload: this.state.search});
     console.log('hit submit')
   }
 
