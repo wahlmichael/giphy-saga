@@ -13,22 +13,32 @@ const sagaMiddleware = createSagaMiddleware();
 
 function* searchGiphy(action){
     try{
-      yield axios.get('/search',{
+ /*      const response=yield axios.get('/api/search',{
           params: {
               searchTerm: action.payload,
           }
-      });
+      }); */
+      const response=yield axios.get(`/api/search/${action.payload}`);
+      yield put({type: 'GET_GIFS', payload: response.data.data});
     } catch {
      console.log('Error in searchGiphy');
     }
   }
 
   function* rootSaga() {
-    yield takeEvery('SEARCH_PLANT', searchGiphy);
+    yield takeEvery('SEARCH_GIPHY', searchGiphy);
    }
+
+const getGifs=(state=[],action)=>{
+  if(action.type==='GET_GIFS'){
+    return action.payload;
+  }
+  return state;
+}
 
 const store = createStore(
     combineReducers({ 
+      getGifs,
      }),
      applyMiddleware(sagaMiddleware, logger)
   );
