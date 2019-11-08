@@ -12,7 +12,7 @@ router.get('/:search', (req, res) => {
             q: req.params.search,
 
         },
-        url: 'api.giphy.com/v1/gifs/search'
+        url: 'http://api.giphy.com/v1/gifs/search'
     }) .then((response) => {
         res.send(response.data.data)
     }) .catch((error) => {
