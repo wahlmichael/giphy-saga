@@ -5,6 +5,7 @@ const axios = require('axios');
 router.get('/:search', (req, res) => {
     console.log('hit search');
     console.log(req.params.search);
+
     axios({
         method: 'GET',
         params: {
