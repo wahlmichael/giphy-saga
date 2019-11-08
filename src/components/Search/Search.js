@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { connect } from 'react-redux'
 
+const mapReduxStateToProps = reduxState => ({
+  reduxState,
+});
+
 class Search extends Component {
   state= {
     search: '',
@@ -26,9 +30,13 @@ class Search extends Component {
 
         <input placeholder="search" value={this.state.search} onChange ={this.searchFunction}/>
         <button onClick={this.submitSearch}>Submit</button>
+        
+        {this.props.reduxState.getGifs.map((gifObject) => {
+          return <img src={gifObject.images.original.url}></img>
+        })}
       </div>
     );
   }
 }
 
-export default connect()(withRouter(Search));
+export default connect(mapReduxStateToProps)(withRouter(Search));
